@@ -59,4 +59,16 @@ int main(int argc, char** argv) {
         boost::timer::auto_cpu_timer t;
         volk_32f_sin_32f(&(out[0]),&(in[0]), num);
     }
+    std::cout << "dummy memory bandwidth test: copy out- to input" << std::endl;
+    {
+        boost::timer::auto_cpu_timer t;
+        for(unsigned long i = 0; i < num; i++)
+            in[i] = out[i];
+    }
+    std::cout << "dummy memory bandwidth test: copy in- to output" << std::endl;
+    {
+        boost::timer::auto_cpu_timer t;
+        for(unsigned long i = 0; i < num; i++)
+            out[i] = in[i];
+    }
 }
